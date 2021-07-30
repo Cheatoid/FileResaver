@@ -35,15 +35,8 @@ jobs:
     - name: Publish solution
       shell: bash
       run: |
-        #ver_tag=$(git describe --tags --abbrev=0)
         dotnet publish --configuration Release --no-build --no-restore -o artifacts
         7z a -tzip "FileResaver.zip" ".\artifacts\*"
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@master
-        with:
-          name: ${{ github.ref }}
-          path: FileResaver.zip
 
     - name: Create release
       id: create_release
